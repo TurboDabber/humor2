@@ -1,0 +1,30 @@
+<h1>Random photo</h1>
+
+@if (loading) {
+  <div>Loading...</div>
+}
+
+@if (error) {
+  <p style="color:red">{{ error }}</p>
+}
+
+@if (state && !state.done && state.image) {
+  <p>Memes left: {{ state.remaining }}</p>
+
+  <img
+    [src]="state.image.url"
+    [alt]="state.image.originalName"
+    style="max-width: 600px; width: 100%;"
+  />
+
+  <div style="margin-top:12px">
+    <button (click)="loadNext()" [disabled]="loading">
+      Next image
+    </button>
+  </div>
+}
+
+@if (state?.done) {
+  <p>That's all of the messages</p>
+  <button (click)="finish()">Return to upload</button>
+}

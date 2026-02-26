@@ -1,0 +1,15 @@
+<h1>Upload photos</h1>
+
+<input type="file" multiple accept="image/*" (change)="onPick($event)" />
+
+@if(files.length){
+    <p>Selected: {{ files.length }}</p>
+}
+
+
+<button (click)="uploadAndGoNext()" [disabled]="uploading">
+    {{ uploading ? 'Sending...' : 'Next' }}
+</button>
+@if(error){
+    <p style="color:red" >{{ error }}</p>
+}
